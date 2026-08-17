@@ -22,19 +22,14 @@ interface Memory {
 })
 export class Memories implements AfterViewInit {
 
-  // =========================
-  // MEMORY DATA
-  // =========================
-
   memories: Memory[] = [
 
     {
       type: 'image',
       src: '/photos/photo-1.jpeg',
       title: 'Our First Memory',
-      date: '29 sept 2025',
-      description:
-        'A moment I never want to forget.'
+      date: '29 Sept 2025',
+      description: 'A moment I never want to forget.'
     },
 
     {
@@ -42,8 +37,7 @@ export class Memories implements AfterViewInit {
       src: '/photos/photo-4.mp4',
       title: 'Our Little Adventure',
       date: '11 August 2025',
-      description:
-        'Another little chapter of our story.'
+      description: 'Another little chapter of our story.'
     },
 
     {
@@ -51,60 +45,74 @@ export class Memories implements AfterViewInit {
       src: '/photos/photo-5.jpeg',
       title: 'Our Random Picture',
       date: '11 August 2025',
-      description:
-        'Another little chapter of our story.'
-    },
-
+      description: 'Another little chapter of our story.'
+    }
 
   ];
 
 
-  // =========================
-  // SELECTED MEMORY
-  // =========================
-
   selectedMemory: Memory | null = null;
 
-
-  // =========================
-  // GET ALL VIDEO ELEMENTS
-  // =========================
 
   @ViewChildren('memoryVideo')
   videos!: QueryList<ElementRef<HTMLVideoElement>>;
 
 
-  // =========================
-  // AFTER HTML RENDERED
-  // =========================
+  // =====================================
+  // SETELAH VIDEO SELESAI DIBUAT ANGULAR
+  // =====================================
 
   ngAfterViewInit(): void {
 
-    this.playVideos();
+    // Tunggu sebentar supaya video
+    // benar-benar sudah masuk DOM.
+
+    setTimeout(() => {
+
+      this.playAllVideos();
+
+    }, 100);
 
   }
 
 
-  // =========================
-  // PLAY ALL MEMORY VIDEOS
-  // =========================
+  // =====================================
+  // AUTOPLAY SEMUA VIDEO
+  // =====================================
 
-  private playVideos(): void {
+  private playAllVideos(): void {
 
     this.videos.forEach(
-      (videoRef: ElementRef<HTMLVideoElement>) => {
+      (videoRef) => {
 
         const video =
           videoRef.nativeElement;
 
-        // Make sure browser knows
-        // this video has no sound.
 
+        // Pastikan silent
         video.muted = true;
-
+        video.defaultMuted = true;
         video.volume = 0;
 
 
+        // Mobile compatibility
+        video.setAttribute(
+          'muted',
+          ''
+        );
+
+        video.setAttribute(
+          'playsinline',
+          ''
+        );
+
+        video.setAttribute(
+          'webkit-playsinline',
+          ''
+        );
+
+
+        // Coba play
         video.play()
           .then(() => {
 
@@ -114,10 +122,11 @@ export class Memories implements AfterViewInit {
             );
 
           })
-          .catch((error) => {
+          .catch(error => {
 
             console.error(
               '❌ Memory autoplay gagal:',
+              video.currentSrc,
               error
             );
 
@@ -129,31 +138,26 @@ export class Memories implements AfterViewInit {
   }
 
 
-  // =========================
+  // =====================================
   // OPEN MEMORY
-  // =========================
+  // =====================================
 
   openMemory(memory: Memory): void {
 
     this.selectedMemory = memory;
-
-    // Stop page scrolling
-    // while fullscreen viewer is open.
 
     document.body.style.overflow = 'hidden';
 
   }
 
 
-  // =========================
+  // =====================================
   // CLOSE MEMORY
-  // =========================
+  // =====================================
 
   closeMemory(): void {
 
     this.selectedMemory = null;
-
-    // Enable page scrolling again.
 
     document.body.style.overflow = '';
 
