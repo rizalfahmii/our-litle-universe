@@ -31,12 +31,7 @@ export class App {
   hero!: Hero;
 
 
-  enterStory() {
-
-    console.log('Story dimulai ❤️');
-
-    this.hero.playVideo();
-
-  }
-
+ enterStory(): void {
+  this.hero.playVideo();
+}
 }

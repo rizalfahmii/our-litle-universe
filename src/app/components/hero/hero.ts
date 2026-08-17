@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   Component,
   ElementRef,
   ViewChild
@@ -11,71 +10,24 @@ import {
   templateUrl: './hero.html',
   styleUrl: './hero.css'
 })
-export class Hero implements AfterViewInit {
+export class Hero {
 
   @ViewChild('heroVideo')
   heroVideo!: ElementRef<HTMLVideoElement>;
-
-  ngAfterViewInit(): void {
-
-    const video = this.heroVideo.nativeElement;
-
-    // Pastikan browser menganggap video silent
-    video.muted = true;
-    video.defaultMuted = true;
-    video.volume = 0;
-
-    // Mobile compatibility
-    video.setAttribute('muted', '');
-    video.setAttribute('playsinline', '');
-    video.setAttribute('autoplay', '');
-
-    // Tunggu video siap
-    if (video.readyState >= 3) {
-
-      this.startVideo();
-
-    } else {
-
-      video.addEventListener(
-        'canplay',
-        () => {
-          this.startVideo();
-        },
-        { once: true }
-      );
-
-    }
-  }
-
-  private startVideo(): void {
-
-    const video = this.heroVideo.nativeElement;
-
-    video.muted = true;
-
-    video.play()
-      .then(() => {
-        console.log('🎥 HERO AUTOPLAY BERHASIL');
-      })
-      .catch(error => {
-        console.error('❌ HERO AUTOPLAY GAGAL:', error);
-      });
-
-  }
 
   playVideo(): void {
 
     const video = this.heroVideo.nativeElement;
 
     video.muted = true;
+    video.volume = 0;
 
     video.play()
       .then(() => {
-        console.log('🎥 HERO PLAY BERHASIL');
+        console.log('🎥 HERO BERHASIL PLAY');
       })
-      .catch(error => {
-        console.error('❌ HERO PLAY GAGAL:', error);
+      .catch((error) => {
+        console.error('❌ HERO GAGAL PLAY:', error);
       });
 
   }

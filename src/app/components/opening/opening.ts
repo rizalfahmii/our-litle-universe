@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-opening',
@@ -10,8 +10,17 @@ export class Opening {
 
   isOpeningComplete = false;
 
-  enterStory() {
+  @Output()
+  storyEntered = new EventEmitter<void>();
+
+
+  enterStory(): void {
+
     this.isOpeningComplete = true;
+
+    // Kirim event ke App
+    this.storyEntered.emit();
+
   }
 
 }
