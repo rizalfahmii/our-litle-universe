@@ -55,10 +55,8 @@
                leading-relaxed
                text-gray-500"
       >
-
         Some moments are too beautiful
         to be forgotten.
-
       </p>
 
     </div>
@@ -69,9 +67,7 @@
     <!-- TIMELINE -->
     <!-- ================================= -->
 
-    <div
-      class="relative"
-    >
+    <div class="relative">
 
 
       <!-- Vertical Line -->
@@ -102,13 +98,12 @@
         let i = $index
       ) {
 
-
         <div
           class="relative
                  mb-24
                  grid
                  grid-cols-1
-                 gap-10
+                 gap-8
                  md:grid-cols-2
                  md:gap-20"
         >
@@ -184,8 +179,8 @@
             <!-- IMAGE -->
 
             <div
-              class="hidden
-                     md:block"
+              class="ml-10
+                     md:ml-0"
             >
 
               @if (story.image) {
@@ -199,6 +194,7 @@
                          rounded-2xl
                          object-cover
                          opacity-80
+                         shadow-xl
                          transition
                          duration-700
                          hover:scale-[1.03]
@@ -223,8 +219,10 @@
             <!-- IMAGE -->
 
             <div
-              class="hidden
-                     md:block"
+              class="order-2
+                     ml-10
+                     md:order-1
+                     md:ml-0"
             >
 
               @if (story.image) {
@@ -238,6 +236,7 @@
                          rounded-2xl
                          object-cover
                          opacity-80
+                         shadow-xl
                          transition
                          duration-700
                          hover:scale-[1.03]
@@ -253,7 +252,9 @@
             <!-- TEXT -->
 
             <div
-              class="pl-10
+              class="order-1
+                     pl-10
+                     md:order-2
                      md:pl-20"
             >
 
