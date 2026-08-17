@@ -20,17 +20,63 @@ export class Hero implements AfterViewInit {
 
     const video = this.heroVideo.nativeElement;
 
+    // Pastikan muted
+    video.muted = true;
+    video.defaultMuted = true;
+
+    // Mobile compatibility
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+    video.setAttribute('autoplay', '');
+
+    /*
+     * Jangan langsung play.
+     * Tunggu video benar-benar siap.
+     */
+
+    if (video.readyState >= 3) {
+
+      this.startVideo(video);
+
+    } else {
+
+      video.addEventListener(
+        'canplay',
+        () => {
+          this.startVideo(video);
+        },
+        { once: true }
+      );
+
+    }
+  }
+
+
+  private startVideo(
+    video: HTMLVideoElement
+  ): void {
+
     video.muted = true;
 
     video.play()
       .then(() => {
-        console.log('🎥 Hero autoplay berhasil');
+
+        console.log(
+          '🎥 HERO BERHASIL PLAY'
+        );
+
       })
       .catch(error => {
-        console.error('❌ Hero autoplay gagal:', error);
-      });
 
+        console.error(
+          '❌ HERO PLAY GAGAL:',
+          error
+        );
+
+      });
   }
+
 
   playVideo(): void {
 
@@ -40,10 +86,19 @@ export class Hero implements AfterViewInit {
 
     video.play()
       .then(() => {
-        console.log('🎥 Hero started');
+
+        console.log(
+          '🎥 Hero started manually'
+        );
+
       })
       .catch(error => {
-        console.error('❌ Hero gagal play:', error);
+
+        console.error(
+          '❌ Hero gagal play:',
+          error
+        );
+
       });
 
   }
