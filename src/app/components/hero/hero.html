@@ -1,0 +1,106 @@
+<section
+  id="home"
+  class="relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-6 text-white"
+>
+
+  <!-- Background Video -->
+ <video
+  #heroVideo
+  muted
+  loop
+  playsinline
+  preload="auto"
+  class="hero-video absolute inset-0 h-full w-full object-cover"
+>
+  <source src="/videos/hero.mp4" type="video/mp4">
+</video>
+
+  <!-- Dark Overlay -->
+  <div
+    class="absolute inset-0 bg-black/55"
+  ></div>
+
+  <!-- Gradient Overlay -->
+  <div
+    class="absolute inset-0 bg-gradient-to-b
+           from-black/30
+           via-black/30
+           to-[#08080d]"
+  ></div>
+
+
+  <!-- Content -->
+  <div class="hero-content relative z-10 max-w-4xl text-center">
+
+    <p
+      class="mb-6 text-xs uppercase
+             tracking-[0.5em] text-pink-300
+             sm:text-sm"
+    >
+      A collection of our memories
+    </p>
+
+    <h1
+      class="text-6xl font-light tracking-tight
+             sm:text-7xl md:text-8xl"
+    >
+      Our Little
+
+      <span
+        class="mt-2 block font-serif italic
+               text-pink-300"
+      >
+        Universe
+      </span>
+    </h1>
+
+    <p
+      class="mx-auto mt-8 max-w-xl
+             text-sm leading-relaxed
+             text-gray-300 sm:text-base"
+    >
+      Every laugh, every journey,
+      every little moment that
+      became a beautiful memory.
+    </p>
+
+    <a
+      href="#memories"
+      class="mt-10 inline-block rounded-full
+             border border-white/20
+             bg-white/10 px-8 py-3
+             text-sm text-white
+             backdrop-blur-md
+             transition-all duration-500
+             hover:scale-105
+             hover:border-pink-300/40
+             hover:bg-pink-300/10
+             hover:shadow-[0_0_40px_rgba(244,114,182,0.2)]"
+    >
+      Explore our story
+      <span class="ml-2">♡</span>
+    </a>
+
+  </div>
+
+
+  <!-- Scroll Indicator -->
+  <div
+    class="absolute bottom-8 left-1/2
+           z-10 flex -translate-x-1/2
+           flex-col items-center gap-2
+           text-gray-300"
+  >
+    <span
+      class="text-[10px] uppercase
+             tracking-[0.3em]"
+    >
+      Scroll
+    </span>
+
+    <span class="text-lg animate-bounce">
+      ↓
+    </span>
+  </div>
+
+</section>

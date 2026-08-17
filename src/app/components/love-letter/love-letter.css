@@ -1,0 +1,190 @@
+/* ================================= */
+/* ENVELOPE ENTRANCE */
+/* ================================= */
+
+.letter-entrance {
+  animation: letterEntrance 1.2s ease-out;
+}
+
+@keyframes letterEntrance {
+
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+}
+
+
+
+/* ================================= */
+/* ENVELOPE */
+/* ================================= */
+
+.envelope {
+  animation:
+    envelopeFloat 4s ease-in-out infinite;
+}
+
+@keyframes envelopeFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+}
+
+
+
+/* ================================= */
+/* ENVELOPE FLAP */
+/* ================================= */
+
+.envelope-flap {
+  transform-origin: top center;
+
+  transition:
+    transform 0.8s ease,
+    z-index 0.2s;
+}
+
+
+
+/* ================================= */
+/* LETTER OPENING */
+/* ================================= */
+
+.letter-wrapper {
+  animation: letterAppear 1s ease-out;
+}
+
+@keyframes letterAppear {
+
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateY(40px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+}
+
+
+
+/* ================================= */
+/* PAPER */
+/* ================================= */
+
+.letter-paper {
+  background:
+    linear-gradient(
+      135deg,
+      #f4e8cf 0%,
+      #ead8b8 100%
+    );
+
+  transform: rotate(-0.5deg);
+
+  animation:
+    paperOpen 1.2s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes paperOpen {
+
+  0% {
+    opacity: 0;
+    transform:
+      scaleY(0.1)
+      rotate(-2deg);
+    transform-origin: top center;
+  }
+
+  60% {
+    opacity: 1;
+    transform:
+      scaleY(1.05)
+      rotate(0.5deg);
+  }
+
+  100% {
+    transform:
+      scaleY(1)
+      rotate(-0.5deg);
+  }
+
+}
+
+
+
+/* ================================= */
+/* LETTER TEXT */
+/* ================================= */
+
+.letter-line {
+  opacity: 0;
+
+  animation:
+    writingAppear 1s ease forwards;
+}
+
+
+/*
+  Delay each paragraph
+*/
+
+.letter-line:nth-of-type(2) {
+  animation-delay: 0.8s;
+}
+
+.letter-line:nth-of-type(3) {
+  animation-delay: 1.6s;
+}
+
+.letter-line:nth-of-type(4) {
+  animation-delay: 2.4s;
+}
+
+.letter-line:nth-of-type(5) {
+  animation-delay: 3.2s;
+}
+
+@keyframes writingAppear {
+
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+
+/* ================================= */
+/* MOBILE */
+/* ================================= */
+
+@media (max-width: 640px) {
+
+  .envelope {
+    transform: scale(0.8);
+  }
+
+}

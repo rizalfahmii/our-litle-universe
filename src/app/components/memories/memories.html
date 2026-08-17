@@ -1,0 +1,395 @@
+<section
+  id="memories"
+  class="relative overflow-hidden
+         bg-[#08080d]
+         px-6 py-32
+         text-white"
+>
+
+  <div class="mx-auto max-w-6xl">
+
+
+    <!-- ================================= -->
+    <!-- HEADER -->
+    <!-- ================================= -->
+
+    <div class="mb-16 max-w-2xl">
+
+      <p
+        class="mb-4 text-xs uppercase
+               tracking-[0.4em]
+               text-pink-300"
+      >
+        Our memories
+      </p>
+
+
+      <h2
+        class="text-4xl font-light
+               sm:text-5xl md:text-6xl"
+      >
+
+        Little moments,
+
+        <span
+          class="font-serif italic
+                 text-pink-300"
+        >
+          forever.
+        </span>
+
+      </h2>
+
+
+      <p
+        class="mt-5 text-sm
+               leading-relaxed
+               text-gray-500"
+      >
+        A collection of little moments
+        that became part of our story.
+      </p>
+
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- GALLERY -->
+    <!-- ================================= -->
+
+    <div
+      class="grid grid-cols-1
+             gap-5
+             sm:grid-cols-2
+             lg:grid-cols-3"
+    >
+
+
+      @for (
+        memory of memories;
+        track memory.src
+      ) {
+
+
+        <!-- ================================= -->
+        <!-- MEMORY CARD -->
+        <!-- ================================= -->
+
+        <article
+          (click)="openMemory(memory)"
+          class="memory-card group
+                 relative
+                 aspect-[4/5]
+                 cursor-pointer
+                 overflow-hidden
+                 rounded-2xl
+                 bg-gray-900"
+        >
+
+
+          <!-- ================================= -->
+          <!-- IMAGE -->
+          <!-- ================================= -->
+
+          @if (memory.type === 'image') {
+
+            <img
+              [src]="memory.src"
+              [alt]="memory.title"
+              loading="lazy"
+              class="h-full w-full
+                     object-cover
+                     transition
+                     duration-700
+                     ease-out
+                     group-hover:scale-110"
+            />
+
+          }
+
+
+
+          <!-- ================================= -->
+          <!-- VIDEO -->
+          <!-- ================================= -->
+
+          @if (memory.type === 'video') {
+
+            <video
+              #memoryVideo
+              [src]="memory.src"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+              class="h-full w-full
+                     object-cover
+                     transition
+                     duration-700
+                     ease-out
+                     group-hover:scale-110"
+            ></video>
+
+
+            <!-- Video Icon -->
+
+            <div
+              class="absolute right-4 top-4
+                     flex h-9 w-9
+                     items-center
+                     justify-center
+                     rounded-full
+                     bg-black/40
+                     text-sm text-white
+                     backdrop-blur-md"
+            >
+              ▶
+            </div>
+
+          }
+
+
+
+          <!-- ================================= -->
+          <!-- DARK OVERLAY -->
+          <!-- ================================= -->
+
+          <div
+            class="absolute inset-0
+                   bg-gradient-to-t
+                   from-black/90
+                   via-black/20
+                   to-transparent
+                   opacity-80
+                   transition
+                   duration-500
+                   group-hover:opacity-100"
+          ></div>
+
+
+
+          <!-- ================================= -->
+          <!-- TEXT -->
+          <!-- ================================= -->
+
+          <div
+            class="absolute bottom-0
+                   left-0 right-0
+                   translate-y-3
+                   p-6
+                   transition
+                   duration-500
+                   group-hover:translate-y-0"
+          >
+
+            <p
+              class="mb-2 text-xs
+                     uppercase
+                     tracking-[0.2em]
+                     text-pink-300"
+            >
+              {{ memory.date }}
+            </p>
+
+
+            <h3
+              class="text-xl
+                     font-light"
+            >
+              {{ memory.title }}
+            </h3>
+
+
+            <p
+              class="mt-2 max-w-xs
+                     text-sm
+                     leading-relaxed
+                     text-gray-400
+                     opacity-0
+                     transition
+                     duration-500
+                     group-hover:opacity-100"
+            >
+              {{ memory.description }}
+            </p>
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- EMPTY STATE -->
+    <!-- ================================= -->
+
+    @if (memories.length === 0) {
+
+      <div
+        class="py-20
+               text-center
+               text-gray-600"
+      >
+
+        No memories yet...
+
+      </div>
+
+    }
+
+  </div>
+
+
+
+  <!-- ================================= -->
+  <!-- FULLSCREEN VIEWER -->
+  <!-- ================================= -->
+
+  @if (selectedMemory) {
+
+    <div
+      class="fixed inset-0 z-[200]
+             flex items-center
+             justify-center
+             bg-black/95
+             p-6
+             backdrop-blur-xl"
+    >
+
+
+      <!-- ================================= -->
+      <!-- CLOSE BUTTON -->
+      <!-- ================================= -->
+
+      <button
+        type="button"
+        (click)="closeMemory()"
+        class="absolute right-6 top-6
+               z-50
+               flex h-11 w-11
+               items-center
+               justify-center
+               rounded-full
+               bg-white/10
+               text-2xl
+               text-white
+               backdrop-blur-md
+               transition
+               duration-300
+               hover:scale-110
+               hover:bg-white/20"
+      >
+        ×
+      </button>
+
+
+
+      <!-- ================================= -->
+      <!-- VIEWER -->
+      <!-- ================================= -->
+
+      <div
+        class="w-full max-w-5xl
+               text-center"
+      >
+
+
+        <!-- ================================= -->
+        <!-- FULLSCREEN IMAGE -->
+        <!-- ================================= -->
+
+        @if (selectedMemory.type === 'image') {
+
+          <img
+            [src]="selectedMemory.src"
+            [alt]="selectedMemory.title"
+            class="mx-auto
+                   max-h-[75vh]
+                   max-w-full
+                   rounded-2xl
+                   object-contain
+                   shadow-2xl"
+          />
+
+        }
+
+
+
+        <!-- ================================= -->
+        <!-- FULLSCREEN VIDEO -->
+        <!-- ================================= -->
+
+        @if (selectedMemory.type === 'video') {
+
+          <video
+            [src]="selectedMemory.src"
+            autoplay
+            muted
+            loop
+            playsinline
+            controls
+            class="mx-auto
+                   max-h-[75vh]
+                   max-w-full
+                   rounded-2xl
+                   shadow-2xl"
+          ></video>
+
+        }
+
+
+
+        <!-- ================================= -->
+        <!-- MEMORY INFORMATION -->
+        <!-- ================================= -->
+
+        <div
+          class="mt-6"
+        >
+
+          <p
+            class="text-xs
+                   uppercase
+                   tracking-[0.3em]
+                   text-pink-300"
+          >
+            {{ selectedMemory.date }}
+          </p>
+
+
+          <h3
+            class="mt-2
+                   text-2xl
+                   font-light
+                   text-white"
+          >
+            {{ selectedMemory.title }}
+          </h3>
+
+
+          <p
+            class="mx-auto mt-3
+                   max-w-lg
+                   text-sm
+                   leading-relaxed
+                   text-gray-400"
+          >
+            {{ selectedMemory.description }}
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  }
+
+</section>

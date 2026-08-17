@@ -1,0 +1,343 @@
+<section
+  id="story"
+  class="relative overflow-hidden
+         bg-[#08080d]
+         px-6 py-32
+         text-white"
+>
+
+  <div class="mx-auto max-w-5xl">
+
+
+    <!-- ================================= -->
+    <!-- HEADER -->
+    <!-- ================================= -->
+
+    <div
+      class="mx-auto mb-24
+             max-w-2xl
+             text-center"
+    >
+
+      <p
+        class="mb-5 text-xs
+               uppercase
+               tracking-[0.5em]
+               text-pink-300"
+      >
+        Our story
+      </p>
+
+
+      <h2
+        class="text-5xl
+               font-light
+               sm:text-6xl"
+      >
+
+        Every chapter
+
+        <span
+          class="font-serif
+                 italic
+                 text-pink-300"
+        >
+          brought us here.
+        </span>
+
+      </h2>
+
+
+      <p
+        class="mx-auto mt-6
+               max-w-lg
+               text-sm
+               leading-relaxed
+               text-gray-500"
+      >
+
+        Some moments are too beautiful
+        to be forgotten.
+
+      </p>
+
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- TIMELINE -->
+    <!-- ================================= -->
+
+    <div
+      class="relative"
+    >
+
+
+      <!-- Vertical Line -->
+
+      <div
+        class="absolute
+               left-4
+               top-0
+               h-full
+               w-px
+               bg-gradient-to-b
+               from-transparent
+               via-pink-300/30
+               to-transparent
+               md:left-1/2
+               md:-translate-x-1/2"
+      ></div>
+
+
+
+      <!-- ================================= -->
+      <!-- STORY ITEMS -->
+      <!-- ================================= -->
+
+      @for (
+        story of stories;
+        track story.title;
+        let i = $index
+      ) {
+
+
+        <div
+          class="relative
+                 mb-24
+                 grid
+                 grid-cols-1
+                 gap-10
+                 md:grid-cols-2
+                 md:gap-20"
+        >
+
+
+          <!-- ================================= -->
+          <!-- TIMELINE DOT -->
+          <!-- ================================= -->
+
+          <div
+            class="absolute
+                   left-4
+                   top-2
+                   z-10
+                   h-2.5
+                   w-2.5
+                   -translate-x-1/2
+                   rounded-full
+                   bg-pink-300
+                   shadow-[0_0_20px_rgba(244,114,182,0.8)]
+                   md:left-1/2"
+          ></div>
+
+
+
+          <!-- ================================= -->
+          <!-- EVEN ITEM -->
+          <!-- ================================= -->
+
+          @if (i % 2 === 0) {
+
+
+            <!-- TEXT -->
+
+            <div
+              class="pl-10
+                     md:pr-20
+                     md:text-right"
+            >
+
+              <p
+                class="text-xs
+                       uppercase
+                       tracking-[0.3em]
+                       text-pink-300"
+              >
+                {{ story.year }}
+              </p>
+
+
+              <h3
+                class="mt-3
+                       text-2xl
+                       font-light"
+              >
+                {{ story.title }}
+              </h3>
+
+
+              <p
+                class="mt-4
+                       text-sm
+                       leading-relaxed
+                       text-gray-500"
+              >
+                {{ story.description }}
+              </p>
+
+            </div>
+
+
+
+            <!-- IMAGE -->
+
+            <div
+              class="hidden
+                     md:block"
+            >
+
+              @if (story.image) {
+
+                <img
+                  [src]="story.image"
+                  [alt]="story.title"
+                  loading="lazy"
+                  class="aspect-[4/3]
+                         w-full
+                         rounded-2xl
+                         object-cover
+                         opacity-80
+                         transition
+                         duration-700
+                         hover:scale-[1.03]
+                         hover:opacity-100"
+                />
+
+              }
+
+            </div>
+
+          }
+
+
+
+          <!-- ================================= -->
+          <!-- ODD ITEM -->
+          <!-- ================================= -->
+
+          @else {
+
+
+            <!-- IMAGE -->
+
+            <div
+              class="hidden
+                     md:block"
+            >
+
+              @if (story.image) {
+
+                <img
+                  [src]="story.image"
+                  [alt]="story.title"
+                  loading="lazy"
+                  class="aspect-[4/3]
+                         w-full
+                         rounded-2xl
+                         object-cover
+                         opacity-80
+                         transition
+                         duration-700
+                         hover:scale-[1.03]
+                         hover:opacity-100"
+                />
+
+              }
+
+            </div>
+
+
+
+            <!-- TEXT -->
+
+            <div
+              class="pl-10
+                     md:pl-20"
+            >
+
+              <p
+                class="text-xs
+                       uppercase
+                       tracking-[0.3em]
+                       text-pink-300"
+              >
+                {{ story.year }}
+              </p>
+
+
+              <h3
+                class="mt-3
+                       text-2xl
+                       font-light"
+              >
+                {{ story.title }}
+              </h3>
+
+
+              <p
+                class="mt-4
+                       text-sm
+                       leading-relaxed
+                       text-gray-500"
+              >
+                {{ story.description }}
+              </p>
+
+            </div>
+
+          }
+
+        </div>
+
+      }
+
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- ENDING -->
+    <!-- ================================= -->
+
+    <div
+      class="mt-10
+             text-center"
+    >
+
+      <div
+        class="mx-auto
+               mb-6
+               h-12
+               w-px
+               bg-gradient-to-b
+               from-pink-300/40
+               to-transparent"
+      ></div>
+
+
+      <p
+        class="text-sm
+               uppercase
+               tracking-[0.4em]
+               text-gray-600"
+      >
+        And the story continues...
+      </p>
+
+
+      <div
+        class="mt-5
+               text-3xl
+               text-pink-300"
+      >
+        ♡
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>

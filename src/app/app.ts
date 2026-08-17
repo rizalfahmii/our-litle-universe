@@ -1,12 +1,42 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {
+  Component,
+  ViewChild
+} from '@angular/core';
+
+import { Opening } from './components/opening/opening';
+import { Navbar } from './components/navbar/navbar';
+import { Hero } from './components/hero/hero';
+import { Memories } from './components/memories/memories';
+import { OurStory } from './components/our-story/our-story';
+import { LoveLetter } from './components/love-letter/love-letter';  
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+
+  imports: [
+    Opening,
+    Navbar,
+    Hero,
+    Memories,
+    OurStory,
+      LoveLetter
+  ],
+
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('our-little-universe');
+
+  @ViewChild('hero')
+  hero!: Hero;
+
+
+  enterStory() {
+
+    console.log('Story dimulai ❤️');
+
+    this.hero.playVideo();
+
+  }
+
 }

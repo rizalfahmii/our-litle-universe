@@ -1,0 +1,438 @@
+<section
+  id="love-letter"
+  class="relative min-h-screen
+         overflow-hidden
+         bg-[#08080d]
+         px-6 py-32
+         text-white"
+>
+
+  <!-- Background glow -->
+
+  <div
+    class="pointer-events-none
+           absolute left-1/2 top-1/2
+           h-[500px] w-[500px]
+           -translate-x-1/2
+           -translate-y-1/2
+           rounded-full
+           bg-pink-300/5
+           blur-[120px]"
+  ></div>
+
+
+  <!-- Content -->
+
+  <div
+    class="relative z-10
+           mx-auto max-w-5xl"
+  >
+
+
+    <!-- ============================= -->
+    <!-- HEADER -->
+    <!-- ============================= -->
+
+    <div
+      class="mx-auto mb-16
+             max-w-2xl
+             text-center"
+    >
+
+      <p
+        class="mb-5 text-xs
+               uppercase
+               tracking-[0.5em]
+               text-pink-300"
+      >
+        A little letter
+      </p>
+
+
+      <h2
+        class="text-5xl
+               font-light
+               sm:text-6xl"
+      >
+
+        For you,
+
+        <span
+          class="font-serif
+                 italic
+                 text-pink-300"
+        >
+          always.
+        </span>
+
+      </h2>
+
+
+      <p
+        class="mx-auto mt-6
+               max-w-lg
+               text-sm
+               leading-relaxed
+               text-gray-500"
+      >
+        There are some things
+        that are easier to write
+        than to say.
+      </p>
+
+    </div>
+
+
+
+    <!-- ============================= -->
+    <!-- LETTER AREA -->
+    <!-- ============================= -->
+
+    <div
+      class="flex
+             min-h-[500px]
+             items-center
+             justify-center"
+    >
+
+
+      <!-- ================================= -->
+      <!-- CLOSED ENVELOPE -->
+      <!-- ================================= -->
+
+      @if (!isOpen) {
+
+        <div
+          class="letter-entrance"
+        >
+
+          <!-- Small text -->
+
+          <p
+            class="mb-8
+                   text-center
+                   font-serif
+                   italic
+                   text-gray-500"
+          >
+            A letter written
+            just for you.
+          </p>
+
+
+          <!-- Envelope -->
+
+          <button
+            type="button"
+            (click)="openLetter()"
+            class="envelope group
+                   relative
+                   h-[220px]
+                   w-[340px]
+                   cursor-pointer
+                   border-0
+                   p-0
+                   outline-none"
+          >
+
+
+            <!-- Envelope body -->
+
+            <div
+              class="absolute
+                     inset-0
+                     rounded-lg
+                     bg-[#d6b98c]
+                     shadow-[0_25px_80px_rgba(0,0,0,0.5)]
+                     transition
+                     duration-500
+                     group-hover:-translate-y-2
+                     group-hover:shadow-[0_35px_100px_rgba(244,114,182,0.15)]"
+            ></div>
+
+
+            <!-- Envelope inside -->
+
+            <div
+              class="absolute
+                     bottom-0
+                     left-0
+                     z-10
+                     h-0
+                     w-0
+                     border-l-[170px]
+                     border-r-[170px]
+                     border-b-[110px]
+                     border-l-transparent
+                     border-r-transparent
+                     border-b-[#c5a574]"
+            ></div>
+
+
+            <!-- Envelope flap -->
+
+            <div
+              class="envelope-flap
+                     absolute
+                     left-0
+                     top-0
+                     z-30
+                     h-0
+                     w-0
+                     border-l-[170px]
+                     border-r-[170px]
+                     border-t-[120px]
+                     border-l-transparent
+                     border-r-transparent
+                     border-t-[#e0c79d]"
+            ></div>
+
+
+            <!-- Wax seal -->
+
+            <div
+              class="absolute
+                     left-1/2
+                     top-1/2
+                     z-40
+                     flex
+                     h-14
+                     w-14
+                     -translate-x-1/2
+                     -translate-y-1/2
+                     items-center
+                     justify-center
+                     rounded-full
+                     bg-[#9f304c]
+                     text-2xl
+                     shadow-[0_5px_20px_rgba(0,0,0,0.3)]
+                     transition
+                     duration-500
+                     group-hover:scale-110"
+            >
+              ♥
+            </div>
+
+
+          </button>
+
+
+          <!-- Click hint -->
+
+          <p
+            class="mt-8
+                   text-center
+                   text-xs
+                   uppercase
+                   tracking-[0.3em]
+                   text-gray-600"
+          >
+            Click the letter
+          </p>
+
+        </div>
+
+      }
+
+
+
+      <!-- ================================= -->
+      <!-- OPEN LETTER -->
+      <!-- ================================= -->
+
+      @if (isOpen) {
+
+        <div
+          class="letter-wrapper
+                 w-full max-w-3xl"
+        >
+
+
+          <!-- Paper -->
+
+          <article
+            class="letter-paper
+                   relative
+                   mx-auto
+                   overflow-hidden
+                   rounded-sm
+                   px-8 py-12
+                   text-[#3c3025]
+                   shadow-[0_30px_100px_rgba(0,0,0,0.6)]
+                   sm:px-16
+                   sm:py-16"
+          >
+
+
+            <!-- Paper texture -->
+
+            <div
+              class="pointer-events-none
+                     absolute inset-0
+                     opacity-20"
+            ></div>
+
+
+            <!-- Top decoration -->
+
+            <div
+              class="mb-10
+                     text-center
+                     text-2xl
+                     text-[#a46b70]"
+            >
+              ♡
+            </div>
+
+
+            <!-- Date -->
+
+            <p
+              class="text-right
+                     font-serif
+                     text-xs
+                     italic
+                     text-[#806d5d]"
+            >
+              For you
+            </p>
+
+
+            <!-- Letter -->
+
+            <div
+              class="mx-auto
+                     mt-10
+                     max-w-2xl
+                     font-serif
+                     leading-loose"
+            >
+
+              <p
+                class="text-2xl
+                       italic
+                       text-[#5a4038]"
+              >
+                Dear you,
+              </p>
+
+
+              <p
+                class="letter-line mt-8
+                       text-base
+                       sm:text-lg"
+              >
+                I don't know exactly when
+                you became such an important
+                part of my life.
+              </p>
+
+
+              <p
+                class="letter-line mt-6
+                       text-base
+                       sm:text-lg"
+              >
+                Maybe it started when we were
+                just two people in the same
+                circle, simply spending time
+                together without knowing
+                where it would lead.
+              </p>
+
+
+              <p
+                class="letter-line mt-6
+                       text-base
+                       sm:text-lg"
+              >
+                Somehow, somewhere along
+                the way, you became one of
+                my favorite parts of every day.
+              </p>
+
+
+              <p
+                class="letter-line mt-6
+                       text-base
+                       sm:text-lg"
+              >
+                And if I could choose again,
+                I'd still choose the moment
+                our paths crossed.
+              </p>
+
+
+              <p
+                class="letter-line mt-6
+                       text-base
+                       sm:text-lg"
+              >
+                Thank you for being here,
+                for all the little moments,
+                and for becoming part of
+                my story.
+              </p>
+
+
+              <!-- Signature -->
+
+              <div
+                class="mt-12
+                       text-right"
+              >
+
+                <p
+                  class="text-sm
+                         italic
+                         text-[#806d5d]"
+                >
+                  Forever yours,
+                </p>
+
+                <p
+                  class="mt-2
+                         text-3xl
+                         italic
+                         text-[#8e4d5b]"
+                >
+                  ♡
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <!-- Close -->
+
+            <button
+              type="button"
+              (click)="closeLetter()"
+              class="absolute
+                     right-5 top-5
+                     flex h-9 w-9
+                     items-center
+                     justify-center
+                     rounded-full
+                     text-xl
+                     text-[#806d5d]
+                     transition
+                     hover:bg-black/5
+                     hover:text-[#3c3025]"
+            >
+              ×
+            </button>
+
+
+          </article>
+
+        </div>
+
+      }
+
+    </div>
+
+  </div>
+
+</section>

@@ -1,0 +1,113 @@
+<section
+  class="opening fixed inset-0 z-[100]
+         flex min-h-screen items-center
+         justify-center overflow-hidden
+         bg-[#08080d] px-6 text-white"
+  [class.opening-hidden]="isOpeningComplete"
+>
+
+  <!-- Background glow -->
+  <div
+    class="absolute left-1/2 top-1/2
+           h-[400px] w-[400px]
+           -translate-x-1/2
+           -translate-y-1/2
+           rounded-full
+           bg-pink-500/10
+           blur-[120px]"
+  ></div>
+
+
+  <!-- Content -->
+  <div
+    class="opening-content
+           relative z-10
+           max-w-xl text-center"
+  >
+
+    <!-- Small heart -->
+    <div
+      class="mb-8 text-4xl text-pink-300
+             heart-pulse"
+    >
+      ♡
+    </div>
+
+
+    <!-- Label -->
+    <p
+      class="mb-5 text-xs uppercase
+             tracking-[0.5em]
+             text-pink-300/80"
+    >
+      Welcome to
+    </p>
+
+
+    <!-- Title -->
+    <h1
+      class="text-5xl font-light
+             tracking-tight
+             sm:text-7xl"
+    >
+      Our Little
+
+      <span
+        class="mt-2 block
+               font-serif italic
+               text-pink-300"
+      >
+        Universe
+      </span>
+    </h1>
+
+
+    <!-- Description -->
+    <p
+      class="mx-auto mt-8
+             max-w-md
+             text-sm leading-relaxed
+             text-gray-500"
+    >
+      A little place where
+      our favorite memories
+      can live forever.
+    </p>
+
+
+    <!-- Enter button -->
+    <button
+      type="button"
+      (click)="enterStory()"
+      class="mt-10 rounded-full
+             border border-white/10
+             bg-white/5 px-8 py-3
+             text-sm
+             backdrop-blur-md
+
+             transition-all
+             duration-500
+
+             hover:scale-105
+             hover:border-pink-300/30
+             hover:bg-pink-300/10
+             hover:shadow-[0_0_50px_rgba(244,114,182,0.15)]"
+    >
+      Enter our story
+      <span class="ml-2">♡</span>
+    </button>
+
+
+    <!-- Footer -->
+    <p
+      class="mt-8 text-[10px]
+             uppercase
+             tracking-[0.3em]
+             text-gray-700"
+    >
+      Made with love
+    </p>
+
+  </div>
+
+</section>
