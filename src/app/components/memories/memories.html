@@ -8,7 +8,6 @@
 
   <div class="mx-auto max-w-6xl">
 
-
     <!-- ================================= -->
     <!-- HEADER -->
     <!-- ================================= -->
@@ -23,12 +22,10 @@
         Our memories
       </p>
 
-
       <h2
         class="text-4xl font-light
                sm:text-5xl md:text-6xl"
       >
-
         Little moments,
 
         <span
@@ -37,9 +34,7 @@
         >
           forever.
         </span>
-
       </h2>
-
 
       <p
         class="mt-5 text-sm
@@ -53,7 +48,6 @@
     </div>
 
 
-
     <!-- ================================= -->
     <!-- GALLERY -->
     <!-- ================================= -->
@@ -65,12 +59,10 @@
              lg:grid-cols-3"
     >
 
-
       @for (
         memory of memories;
         track memory.src
       ) {
-
 
         <!-- ================================= -->
         <!-- MEMORY CARD -->
@@ -87,7 +79,6 @@
                  bg-gray-900"
         >
 
-
           <!-- ================================= -->
           <!-- IMAGE -->
           <!-- ================================= -->
@@ -101,26 +92,12 @@
               class="h-full w-full
                      object-cover
                      transition
-                     duration-700<video
-  #heroVideo
-  autoplay
-  muted
-  loop
-  playsinline
-  preload="auto"
-  class="hero-video absolute inset-0 h-full w-full object-cover"
->
-  <source
-    src="/videos/Hero-new.mp4"
-    type="video/mp4"
-  >
-</video>
+                     duration-700
                      ease-out
                      group-hover:scale-110"
             />
 
           }
-
 
 
           <!-- ================================= -->
@@ -155,14 +132,14 @@
                      justify-center
                      rounded-full
                      bg-black/40
-                     text-sm text-white
+                     text-sm
+                     text-white
                      backdrop-blur-md"
             >
               ▶
             </div>
 
           }
-
 
 
           <!-- ================================= -->
@@ -180,7 +157,6 @@
                    duration-500
                    group-hover:opacity-100"
           ></div>
-
 
 
           <!-- ================================= -->
@@ -237,7 +213,6 @@
     </div>
 
 
-
     <!-- ================================= -->
     <!-- EMPTY STATE -->
     <!-- ================================= -->
@@ -249,15 +224,12 @@
                text-center
                text-gray-600"
       >
-
         No memories yet...
-
       </div>
 
     }
 
   </div>
-
 
 
   <!-- ================================= -->
@@ -274,7 +246,6 @@
              p-6
              backdrop-blur-xl"
     >
-
 
       <!-- ================================= -->
       <!-- CLOSE BUTTON -->
@@ -302,7 +273,6 @@
       </button>
 
 
-
       <!-- ================================= -->
       <!-- VIEWER -->
       <!-- ================================= -->
@@ -311,7 +281,6 @@
         class="w-full max-w-5xl
                text-center"
       >
-
 
         <!-- ================================= -->
         <!-- FULLSCREEN IMAGE -->
@@ -331,7 +300,6 @@
           />
 
         }
-
 
 
         <!-- ================================= -->
@@ -355,7 +323,6 @@
           ></video>
 
         }
-
 
 
         <!-- ================================= -->
@@ -397,7 +364,6 @@
           </p>
 
         </div>
-
 
       </div>
 
