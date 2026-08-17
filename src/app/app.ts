@@ -30,8 +30,18 @@ export class App {
   @ViewChild('hero')
   hero!: Hero;
 
+  @ViewChild('memories')
+  memories!: Memories;
 
- enterStory(): void {
-  this.hero.playVideo();
-}
+
+  enterStory(): void {
+
+    // Hero
+    this.hero.playVideo();
+
+    // Memories
+    this.memories.playVideos();
+
+  }
+
 }

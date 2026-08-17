@@ -29,7 +29,8 @@ export class Memories implements AfterViewInit {
       src: '/photos/photo-1.jpeg',
       title: 'Our First Memory',
       date: '29 Sept 2025',
-      description: 'A moment I never want to forget.'
+      description:
+        'A moment I never want to forget.'
     },
 
     {
@@ -37,7 +38,8 @@ export class Memories implements AfterViewInit {
       src: '/photos/photo-4.mp4',
       title: 'Our Little Adventure',
       date: '11 August 2025',
-      description: 'Another little chapter of our story.'
+      description:
+        'Another little chapter of our story.'
     },
 
     {
@@ -45,95 +47,151 @@ export class Memories implements AfterViewInit {
       src: '/photos/photo-5.jpeg',
       title: 'Our Random Picture',
       date: '11 August 2025',
-      description: 'Another little chapter of our story.'
+      description:
+        'Another little chapter of our story.'
     }
 
   ];
 
-
   selectedMemory: Memory | null = null;
-
 
   @ViewChildren('memoryVideo')
   videos!: QueryList<ElementRef<HTMLVideoElement>>;
 
 
   // =====================================
-  // SETELAH VIDEO SELESAI DIBUAT ANGULAR
+  // VIDEO SIAP
   // =====================================
 
   ngAfterViewInit(): void {
 
-    // Tunggu sebentar supaya video
-    // benar-benar sudah masuk DOM.
+    this.prepareVideos();
 
-    setTimeout(() => {
+    // Coba autoplay ketika video
+    // sudah masuk ke layar.
 
-      this.playAllVideos();
-
-    }, 100);
+    this.observeVideos();
 
   }
 
 
   // =====================================
-  // AUTOPLAY SEMUA VIDEO
+  // SIAPKAN VIDEO UNTUK MOBILE
   // =====================================
 
-  private playAllVideos(): void {
+  private prepareVideos(): void {
 
-    this.videos.forEach(
-      (videoRef) => {
+    this.videos.forEach(videoRef => {
 
-        const video =
-          videoRef.nativeElement;
+      const video = videoRef.nativeElement;
 
+      video.muted = true;
+      video.defaultMuted = true;
+      video.volume = 0;
 
-        // Pastikan silent
-        video.muted = true;
-        video.defaultMuted = true;
-        video.volume = 0;
+      video.setAttribute('muted', '');
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', '');
+      video.setAttribute('autoplay', '');
 
+    });
 
-        // Mobile compatibility
-        video.setAttribute(
-          'muted',
-          ''
-        );
-
-        video.setAttribute(
-          'playsinline',
-          ''
-        );
-
-        video.setAttribute(
-          'webkit-playsinline',
-          ''
-        );
+  }
 
 
-        // Coba play
-        video.play()
-          .then(() => {
+  // =====================================
+  // OBSERVE VIDEO
+  // =====================================
 
-            console.log(
-              '🎥 Memory autoplay berhasil:',
-              video.currentSrc
-            );
+  private observeVideos(): void {
 
-          })
-          .catch(error => {
+    const observer =
+      new IntersectionObserver(
+        entries => {
 
-            console.error(
-              '❌ Memory autoplay gagal:',
-              video.currentSrc,
-              error
-            );
+          entries.forEach(entry => {
+
+            const video =
+              entry.target as HTMLVideoElement;
+
+
+            if (entry.isIntersecting) {
+
+              this.playVideo(video);
+
+            } else {
+
+              // Pause kalau sudah keluar layar
+              video.pause();
+
+            }
 
           });
 
-      }
-    );
+        },
+        {
+          threshold: 0.3
+        }
+      );
+
+
+    this.videos.forEach(videoRef => {
+
+      observer.observe(
+        videoRef.nativeElement
+      );
+
+    });
+
+  }
+
+
+  // =====================================
+  // PLAY VIDEO
+  // =====================================
+
+  private playVideo(
+    video: HTMLVideoElement
+  ): void {
+
+    video.muted = true;
+    video.volume = 0;
+
+    video.play()
+      .then(() => {
+
+        console.log(
+          '🎥 MEMORY PLAY:',
+          video.currentSrc
+        );
+
+      })
+      .catch(error => {
+
+        console.log(
+          '⚠️ Browser menolak autoplay:',
+          error
+        );
+
+      });
+
+  }
+
+
+  // =====================================
+  // DIPANGGIL DARI APP
+  // =====================================
+
+  playVideos(): void {
+
+    this.videos.forEach(videoRef => {
+
+      const video =
+        videoRef.nativeElement;
+
+      this.playVideo(video);
+
+    });
 
   }
 
